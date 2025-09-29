@@ -1,8 +1,7 @@
 let url = 'https://anime-db.p.rapidapi.com/anime/by-id/';
 
-var btnID = document.getElementById("button_ID");
-var btnNAME = document.getElementById("button_NAME");
-var btnRANK = document.getElementById("button_RANK")
+var filtre = document.getElementById("choixFiltre");
+var btn = document.getElementById("button_choixParam");
 
 const options = {
 	method: 'GET',
@@ -22,27 +21,22 @@ async function fetchData() {
     }
 }
 
-function checkName() {
-    var NAME = document.getElementById("valeur_NAME").value;
-    url = 'https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=' + NAME + '&sortBy=ranking&sortOrder=asc';
-    return fetchData(url, options);
+function checkButton() {
+    var param = document.getElementById("choixParam").value;
+    filtre = filtre.options;
+    if (filtre === 'Nom') {
+        url = 'https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=' + param + '&sortBy=ranking&sortOrder=asc';
+        return fetchData(url, options);
+    } else if (filtre === 'ID') {
+        url = 'https://anime-db.p.rapidapi.com/anime/by-id/' + param;
+        return fetchData(url, options);
+    } else if (filtre === 'Rank') {
+        url = 'https://anime-db.p.rapidapi.com/anime/by-ranking/' + RANK;
+        return fetchData(url, options);
+    }
 }
 
-function checkID() {
-    var ID = document.getElementById("valeur_ID").value;
-    url = 'https://anime-db.p.rapidapi.com/anime/by-id/' + ID;
-    return fetchData(url, options);
-}
-
-function checkRank() {
-    var RANK = document.getElementById("valeur_RANK").value;
-    url = 'https://anime-db.p.rapidapi.com/anime/by-ranking/' + RANK;
-    return fetchData(url, options);
-}
-
-btnID.addEventListener("click", checkID);
-btnNAME.addEventListener("click", checkName);
-btnRANK.addEventListener("click", checkRank);
+btn.addEventListener("click", checkButton);
 
 fetchData();
 

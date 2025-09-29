@@ -12,21 +12,18 @@
 	<h1>Anime Requester</h1>
 
     <form>
-        <label for="valeur_NAME">Name :</label>
-        <input id="valeur_NAME" name="name"/>
-        <input type="button" id="button_NAME" value="Envoyer !"/>
+        <label for="choixFiltre">Choisissez un filtre : </label>
+        <select name="choixFiltre" id="choixFiltre">
+            <option>Nom</option>
+            <option>ID</option>
+            <option>Rank</option>
+        </select>
     </form>
-
+    
     <form>
-        <label for="valeur_ID">ID :</label>
-        <input id="valeur_ID" name="name"/>
-        <input type="button" id="button_ID" value="Envoyer !"/>
-    </form>
-
-    <form>
-        <label for="valeur_RANK">Rank :</label>
-        <input id="valeur_RANK" name="name"/>
-        <input type="button" id="button_RANK" value="Envoyer !"/>
+        <label for="choixParam">Paramètre :</label>
+        <input id="choixParam" name="name"/>
+        <input type="button" id="button_choixParam" value="Envoyer !"/>
     </form>
 
   	<script defer src="script.js"></script>
