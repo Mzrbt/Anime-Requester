@@ -1,17 +1,17 @@
 let url = 'https://anime-db.p.rapidapi.com/anime/by-id/';
 let btn = document.getElementById("button_choixParam");
+let choix = document.getElementById("choixParam");
 
 const options = {
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': '2893250d38msha2693fc658faba8p1d3d7ajsn469620810024',
+		'x-rapidapi-key': 'dda0b0e7abmsh635c70595822706p1a5847jsnab7042edc621',
 		'x-rapidapi-host': 'anime-db.p.rapidapi.com'
 	}
 };
 
 
 function createCard(result) {
-    console.log(result);
     const card = document.createElement('div');
     card.classList.add('card');
     card.innerHTML = `
@@ -58,21 +58,24 @@ function checkButton() {
 
     deleteCard();
 
-    let param = document.getElementById("choixParam").value;
+    
     let filtre = document.getElementById("choixFiltre").value;
 
     if (filtre === 'Nom') {
-        url = 'https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=' + param + '&sortBy=ranking&sortOrder=asc';
+        url = 'https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=' + choix.value + '&sortBy=ranking&sortOrder=asc';
         return fetchData(url, options);
     } else if (filtre === 'ID') {
-        url = 'https://anime-db.p.rapidapi.com/anime/by-id/' + param + '?page=1&size=1';
+        url = 'https://anime-db.p.rapidapi.com/anime/by-id/' + choix.value + '?page=1&size=1';
         return fetchData(url, options);
     } else if (filtre === 'Rank') {
-        url = 'https://anime-db.p.rapidapi.com/anime/by-ranking/' + RANK;
+        url = 'https://anime-db.p.rapidapi.com/anime/by-ranking/' + choix.value;
         return fetchData(url, options);
     }
 }
 
 btn.addEventListener("click", checkButton);
-
-fetchData();
+choix.addEventListener("keydown", function(event) {
+    if (event.key === 'Enter') {
+        checkButton();
+    }
+});
