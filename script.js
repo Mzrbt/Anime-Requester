@@ -11,6 +11,7 @@ const options = {
 
 
 function createCard(result) {
+    console.log(result);
     const card = document.createElement('div');
     card.classList.add('card');
     card.innerHTML = `
@@ -32,14 +33,18 @@ async function fetchData() {
         const response = await fetch(url, options);
         const result = await response.text();
         const data = JSON.parse(result);
-        console.log(data);
-        console.log(data.data.length);
         
         try{
-            for (let i = 0; i < data.data.length; i++){
-            console.log(data.data[i]);
-            createCard(data.data[i]);
+            if (Array.isArray(data.data)) {
+                for (let i = 0; i < data.data.length; i++){
+                    console.log(data.data[i]);
+                    createCard(data.data[i]);
+                }
+            } else {
+                console.log(data.data);
+                createCard(data.data);
             }
+            
         } catch (error){
             createCard(data);
         }
@@ -60,7 +65,7 @@ function checkButton() {
         url = 'https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=' + param + '&sortBy=ranking&sortOrder=asc';
         return fetchData(url, options);
     } else if (filtre === 'ID') {
-        url = 'https://anime-db.p.rapidapi.com/anime/by-id/' + param;
+        url = 'https://anime-db.p.rapidapi.com/anime/by-id/' + param + '?page=1&size=1';
         return fetchData(url, options);
     } else if (filtre === 'Rank') {
         url = 'https://anime-db.p.rapidapi.com/anime/by-ranking/' + RANK;
