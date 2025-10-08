@@ -19,9 +19,13 @@ function createCard(result) {
         <p><strong>Rating:</strong> ${result.rating}</p>
         <p><strong>Synopsis:</strong> ${result.synopsis}</p>
     `;
-    document.body.appendChild(card);
+    document.getElementById("result").appendChild(card);
 }
 
+function deleteCard() {
+    let cards = document.getElementById("result");
+    Array.from(cards.getElementsByClassName("card")).forEach(cards => cards.remove());
+}
 
 async function fetchData() {
     try {
@@ -46,6 +50,8 @@ async function fetchData() {
 }
 
 function checkButton() {
+
+    deleteCard();
 
     let param = document.getElementById("choixParam").value;
     let filtre = document.getElementById("choixFiltre").value;
