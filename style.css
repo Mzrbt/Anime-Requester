@@ -18,9 +18,8 @@ div
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    border: 2px solid black;
+    border: 2px solid black;    
     border-radius: 20px;
+    padding: 10px;
+    text-justify: auto;
 }
-
-
-

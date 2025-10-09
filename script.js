@@ -14,11 +14,18 @@ const options = {
 function createCard(result) {
     const card = document.createElement('div');
     card.classList.add('card');
+    console.log(result);
+    let genres = result.genres
+    if (result.genres.length === 0){
+        genres = "N/A";
+    }
     card.innerHTML = `
         <h2>${result.title}</h2>    
         <img src="${result.image}"></img>
-        <p><strong>Rating:</strong> ${result.rating}</p>
         <p><strong>Synopsis:</strong> ${result.synopsis}</p>
+        <p><strong>Genres:</strong> ${genres}</p>
+        <p><strong>Rank:</strong> ${result.ranking}</p>
+        <p><strong>Id:</strong> ${result._id}</p>
     `;
     document.getElementById("result").appendChild(card);
 }
