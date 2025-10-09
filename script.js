@@ -18,7 +18,7 @@ function createCard(result) {
     let genres = result.genres
     let synopsis = result.synopsis;
     let ranking = result.ranking;
-    if (!card.hasRanking){
+    if (!result.hasRanking){
         ranking = "N/A";
     }
     if (synopsis === ""){
