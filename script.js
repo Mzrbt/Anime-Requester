@@ -16,15 +16,23 @@ function createCard(result) {
     card.classList.add('card');
     console.log(result);
     let genres = result.genres
+    let synopsis = result.synopsis;
+    let ranking = result.ranking;
+    if (!card.hasRanking){
+        ranking = "N/A";
+    }
+    if (synopsis === ""){
+        synopsis = "N/A";
+    }
     if (result.genres.length === 0){
         genres = "N/A";
     }
     card.innerHTML = `
         <h2>${result.title}</h2>    
         <img src="${result.image}"></img>
-        <p><strong>Synopsis:</strong> ${result.synopsis}</p>
+        <p><strong>Synopsis:</strong> ${synopsis}</p>
         <p><strong>Genres:</strong> ${genres}</p>
-        <p><strong>Rank:</strong> ${result.ranking}</p>
+        <p><strong>Rank:</strong> ${ranking}</p>
         <p><strong>Id:</strong> ${result._id}</p>
     `;
     document.getElementById("result").appendChild(card);
