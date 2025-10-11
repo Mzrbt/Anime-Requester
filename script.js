@@ -97,6 +97,7 @@ btnEffacer.addEventListener("click", event =>{
 btn.addEventListener("click", checkButton);
 recherche.addEventListener("keydown", function(event) {
     if (event.key === 'Enter') {
+        event.preventDefault();
         checkButton();
     }
 });
